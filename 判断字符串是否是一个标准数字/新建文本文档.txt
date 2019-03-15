@@ -1,0 +1,44 @@
+
+
+
+			3
+			3.25
+			.159
+			354.
+			+24
+			+256.35
+			-248
+			-658.25
+			3.55e15
+			+3.52e12
+			-24.68e157
+			325e-16
+			
+			
+			最多一个小数点  小数点一个累加器   当累加器等于二，false
+			字符串中的字母只能有 大小写的e			判断每一位字符是不是 在 0-9和 e 中  ，不是 ->false
+			e后面只能是整数  判断e后面有没有.
+			除了最开始的第一个字符和e后面的第一个字符，其他地方不能出现 + -
+			e后面必须跟数字
+			
+			var str= ***;
+			var cut = 0;
+			var cut2 = 0;
+			function(){
+				for(var i = 0; i < str.length; i++){
+					if(( str.slice(i,i+1)!='e' || str.slice(i,i+1)!='E' ) && (0>str.slice(i,i+1) || str.slice(i,i+1)>9)) {return false;}
+					if(str.slice(i,i+1)=='e' || str.slice(i,i+1)=='E' ){
+						var e = i;
+						++cut2 == 2? return false : null;
+						for(var  j = i; j < str.length; j++){
+							if(str.slice(j,j+1)=='.'){return false};
+						}
+					}
+					if(i != 0 &&( str.slice(i-1,i) != 'e' || str.slice(i-1,i)!='E' ) &&(str.slice(i,i+1) == "+" || str.slice(1,2) == "-")) {
+						return false;
+					}
+					if(str.slice(i,i+1) == '.'){  ++cut ==2 ? return false : null; }
+					
+				}
+				return true;
+			}

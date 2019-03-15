@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>
+					var str= "+2.251e+23e2";
+					var cut = 0;
+					var cut2 = 0;
+					function aaa(){
+						for(var i = 0; i < str.length; i++){
+							//获取当前字符
+							var sub_this = str.slice(i,i+1);
+							//判断该字符是不是属于 [0,9]∪{e} 这个集合
+							if(( sub_this!='e' && sub_this!='E' ) && (0>sub_this || sub_this>9)) {
+								return false;
+							}
+					
+							//当该字符是E或e
+							if(sub_this=='e' || sub_this=='E' ){
+								//判断e的个数是不是小于等于1
+								// if(++cut2 == 2) return false;
+								//判断e后面是不是有小数点
+								for(var  j = i; j < str.length; j++){
+									if(str.slice(j,j+1)=='.'){return false};
+						
+								}
+								//e如果是最后一位，也就是说e后面无值
+								if(i == str.length-1) return false;
+						
+							}
+
+							//+ - 号只能出现在第一位 以及 e后面的紧挨着一位
+							if( (i != 0 && ( str.slice(i-1,i) != 'e' && str.slice(i-1,i)!='E' )) &&(sub_this == "+" || sub_this == "-")) {
+								return false;
+							}
+
+							//判断小数点出现次数是不是小于等于1
+							if(sub_this == '.'){  if(++cut == 2) return false; }
+						}
+						return true;
+					}
+					alert(aaa());
+	</script>
+</head>
+<body>
+
+</body>
+</html>
